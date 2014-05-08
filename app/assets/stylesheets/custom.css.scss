@@ -1,5 +1,5 @@
-.navbar {
-	border-radius: 0px;
+* {
+	border-radius: 0px !important;
 }
 
 .table > thead > tr > th,
@@ -19,4 +19,18 @@
 .hr-condensed {
 	margin-top: 5px;
 	margin-bottom: 5px;
+}
+
+p.post-content {
+	min-height: 200px;
+	margin-top: 10px;
+}
+
+.post-side-panel {
+	/*margin-top: -15px;
+	margin-bottom: -15px;*/
+	/*height: 100%;
+	margin-right: -15px;
+	border-right: 1px #dddddd solid;*/
+	
 }

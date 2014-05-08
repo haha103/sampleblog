@@ -1,14 +1,46 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-2">
+    <button class="btn btn-primary"><span class="glyphicon glyphicon-file"></span> Reply</button>
+	</div>
+  <div class="col-md-10">
+		<%= link_to 'Back To List', posts_path, :class => "btn btn-default pull-right" %>
+	</div>
+</div>
+<hr class="hr-condensed"/>
+<div class="panel-group">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+      <h4 class="panel-title">
+				<%= @post.title %>
+			</h4>
+		</div>
+    <div class="panel-collapse collapse in">
+			<div class="panel-body">
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @post.content %>
-</p>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+        <div class="row">
+					<div class="col-md-2">
+            <div class="post-side-panel">
+							<a href="#" class="thumbnail">
+								<img data-src="holder.js/100%x160" alt="...">
+							</a>
+						</div>
+					</div>
+          <div class="col-md-10">
+						Created At <%= @post.created_at %>
+						<hr class="hr-condensed"/>
+						<p class="post-content">
+							<%= @post.content %>
+						</p>
+						<hr class="hr-condensed"/>
+						<a href="">Reply</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			xxx
+		</div>
+	</div>
+</div>
