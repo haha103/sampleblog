@@ -48,3 +48,4 @@ gem 'bootstrap-sass', '~> 3.1.1'
 gem 'will_paginate', '~> 3.0'
 gem 'will_paginate-bootstrap'
 gem 'holder_rails'
+gem 'rails-i18n', '~> 4.0.0' # For 4.0.x

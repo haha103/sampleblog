@@ -1,12 +1,38 @@
-<div class="row">
+<div class="row" style="margin-bottom:5px;">
   <div class="col-md-2">
-    <button class="btn btn-primary"><span class="glyphicon glyphicon-file"></span> Reply</button>
+		<!-- Button trigger modal -->
+		<button class="btn btn-primary" data-toggle="modal" data-target="#replyPostModal">
+			<span class="glyphicon glyphicon-file"></span> 回复主题
+		</button>
+
+		<!-- Modal -->
+		<div class="modal fade" id="replyPostModal" tabindex="-1" role="dialog" aria-labelledby="replyPostModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="replyPostModal">回复主题</h4>
+					</div>
+					<div class="modal-body">
+						<form role="form">
+							<div class="form-group">
+								<label for="replyPost">主题: <%= @post.title %></label>
+								<textarea class="form-control" rows="8" name="comment"></textarea>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">撤销</button>
+						<button type="button" class="btn btn-primary">回复</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
   <div class="col-md-10">
-		<%= link_to 'Back To List', posts_path, :class => "btn btn-default pull-right" %>
+		<%= link_to '回到列表', posts_path, :class => "btn btn-default pull-right" %>
 	</div>
 </div>
-<hr class="hr-condensed"/>
 <div class="panel-group">
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -16,23 +42,25 @@
 		</div>
     <div class="panel-collapse collapse in">
 			<div class="panel-body">
-
         <div class="row">
 					<div class="col-md-2">
             <div class="post-side-panel">
+              <p>
+                <b><%= @post.user.nick %></b>
+							</p>
 							<a href="#" class="thumbnail">
-								<img data-src="holder.js/100%x160" alt="...">
+								<img data-src="holder.js/100%x150" alt="...">
 							</a>
 						</div>
 					</div>
           <div class="col-md-10">
-						Created At <%= @post.created_at %>
+						发表于 <%= I18n.l @post.created_at %>
 						<hr class="hr-condensed"/>
 						<p class="post-content">
 							<%= @post.content %>
 						</p>
 						<hr class="hr-condensed"/>
-						<a href="">Reply</a>
+						<a href="">回复</a>
 					</div>
 				</div>
 			</div>

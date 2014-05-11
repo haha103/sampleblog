@@ -1,9 +1,14 @@
 Sampleblog::Application.routes.draw do
+
+	get "log_out" => "sessions#destroy", :as => "log_out"
+	
   resources :comments
 
   resources :users
 
   resources :posts
+
+	resources :sessions
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

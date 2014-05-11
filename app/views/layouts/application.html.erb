@@ -39,15 +39,39 @@
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="http://expo.getbootstrap.com" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Community links', 'Expo']);">Expo</a></li>
-					<li><a href="http://blog.getbootstrap.com" onclick="_gaq.push(['_trackEvent', 'Navbar', 'Community links', 'Blog']);">Blog</a></li>
+					<% if current_user %>
+						<li>
+							<%= link_to content_tag(:b, current_user.nick), user_path(current_user.id) %>
+						</li>
+            <li>
+              <%= link_to '<span class="glyphicon glyphicon-log-out"></span> &nbsp;注销'.html_safe, log_out_path %>
+						</li>
+					<% else %>
+						<li>
+							<%= form_tag({ controller: "sessions", action: "create" }, method: "post", class: "form-inline form-navbar-sm") do %>
+								<div class="form-group">
+									<%= text_field_tag :nick, nil, :placeholder => "用户名", :class => "form-control input-sm" %>
+									<%= password_field_tag :passwd, nil, :placeholder => "密码", :class => "form-control input-sm" %>
+									<%= button_tag '<span class="glyphicon glyphicon-log-in"></span> &nbsp;登录'.html_safe, :class => "btn btn-primary btn-sm" %>
+									<%= link_to '<span class="glyphicon glyphicon-plus"></span> &nbsp;注册'.html_safe, new_user_path, :class => "btn btn-success btn-sm" %>
+								</div>
+							<% end %>
+						</li>
+					<% end %>
 				</ul>
 			</nav>
 		</div>
   </header>
 
   <div class="container">
-		<%= yield %>
+		<% puts "#{flash.inspect}" %>
+		<% flash.each do |k, v| -%>
+			<% next unless v.is_a?(Hash) && v.has_key?(:class) %>
+			<div class="alert alert-<%= v[:class] %>">
+				<%= v[:title] %>: <%= v[:msg] %>
+			</div>
+		<% end -%>
+    <%= yield %>
 	</div>
 	
 </body>

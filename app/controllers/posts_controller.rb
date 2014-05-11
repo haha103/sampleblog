@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.paginate(:page => params[:page], :per_page => 8)
+    @posts = Post.paginate(:page => params[:page], :per_page => 8).order("updated_at DESC")
   end
 
   # GET /posts/1
@@ -14,7 +15,17 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = Post.new
+		user = session[:user]
+		if user
+			@post = Post.new
+		else
+			flash[:permission_denied] = {
+				:class => "danger",
+				:title => "权限错误",
+				:msg => "您必须先登录"
+			}
+			redirect_to :back
+		end
   end
 
   # GET /posts/1/edit
@@ -25,6 +36,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+		@post.user = session[:user]
 
     respond_to do |format|
       if @post.save
