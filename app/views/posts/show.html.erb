@@ -92,14 +92,7 @@
 						<div class="col-md-10">
 							回复于 <%= I18n.l c.created_at %>
 							<hr class="hr-condensed"/>
-							<% if c.parent %>
-                <blockquote>
-                  <p><%= c.parent.content %></p>
-                  <footer>
-										<%= c.parent.user.nick %> @ <%= I18n.l c.parent.created_at %>
-                  </footer>
-                </blockquote>
-							<% end %>
+							<%= render partial: "quote", locals: { c: c } %>
 							<p class="post-content">
 								<%= c.content %>
 							</p>

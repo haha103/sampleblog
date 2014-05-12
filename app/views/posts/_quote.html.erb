@@ -1,0 +1,11 @@
+<% if c.parent %>
+	<blockquote>
+		<p>
+			<%= render partial: "quote", locals: { c: c.parent } %>
+			<%= c.parent.content %>
+		</p>
+		<footer>
+			<%= c.parent.user.nick %> @ <%= I18n.l c.parent.created_at %>
+		</footer>
+	</blockquote>
+<% end %>
