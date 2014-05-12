@@ -11,9 +11,22 @@ ActiveSupport::JSON.decode(File.read('db/seeds/users.json')).each do |d|
 	User.create!(d)
 end
 
+1.upto(20) do |i|
+	srand
+	b = Board.new
+	b.name = "测试板块 #{i}"
+	b.moderator = User.find(rand(User.count) + 1)
+	b.save
+end
+
 1.upto(100) do |i|
 	srand
-	Post.create(title: "帖子标题 blablabla #{i}", content: "这是帖子内容 #{i} blablablabla", user: User.find(rand(User.count) + 1))
+	p = Post.new
+	p.title = "帖子标题 blablabla #{i}"
+	p.content = "这是帖子内容 #{i} blablablabla"
+	p.user = User.find(rand(User.count) + 1)
+	p.board = Board.find(rand(Board.count) + 1)
+	p.save
 end
 
 1.upto(500) do |i|

@@ -1,22 +1,21 @@
-<h1>Listing boards</h1>
+<ol class="breadcrumb">
+  <li class="active">所有板块</li>
+</ol>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
+<table class="table table-hover">
   <tbody>
     <% @boards.each do |board| %>
       <tr>
-        <td><%= board.name %></td>
-        <td><%= link_to 'Show', board %></td>
-        <td><%= link_to 'Edit', edit_board_path(board) %></td>
-        <td><%= link_to 'Destroy', board, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td style="width:56px;">
+					<img data-src="holder.js/40x40" alt="...">
+				</td>
+        <td style="width:60%;"><%= link_to board.name, posts_path(:board => board) %></td>
+        <td><%= board.posts.count %> / <small><%= board.posts.map { |p| p.comments }.flatten.count %></small></td>
+        <td>
+					<%= board.posts.last.title %>
+          <br/>
+          <small><%= I18n.l board.posts.last.created_at, :format => :long %></small>
+				</td>
       </tr>
     <% end %>
   </tbody>

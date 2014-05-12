@@ -1,5 +1,6 @@
 <ol class="breadcrumb">
-  <li><%= link_to "帖子列表", posts_path %></li>
+	<li><%= link_to "所有板块", boards_path %></li>
+  <li><%= link_to "帖子列表", posts_path(:board => @post.board) %></li>
   <li class="active"><%= @post.title %></li>
 </ol>
 
