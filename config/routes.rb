@@ -1,5 +1,7 @@
 Sampleblog::Application.routes.draw do
 
+  resources :categories
+
   resources :boards
 
 	get "log_out" => "sessions#destroy", :as => "log_out"

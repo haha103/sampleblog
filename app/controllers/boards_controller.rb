@@ -5,6 +5,7 @@ class BoardsController < ApplicationController
   # GET /boards.json
   def index
     @boards = Board.all
+		@categories = Category.all
   end
 
   # GET /boards/1
