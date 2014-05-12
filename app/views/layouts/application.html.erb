@@ -64,7 +64,6 @@
   </header>
 
   <div class="container">
-		<% puts "#{flash.inspect}" %>
 		<% flash.each do |k, v| -%>
 			<% next unless v.is_a?(Hash) && v.has_key?(:class) %>
 			<div class="alert alert-<%= v[:class] %>">

@@ -1,8 +1,8 @@
 <div class="row" style="margin-bottom:5px;">
-  <div class="col-md-2">
+  <div class="col-md-1" style="padding-right:0px;">
 		<!-- Button trigger modal -->
-		<button class="btn btn-primary" data-toggle="modal" data-target="#replyPostModal">
-			<span class="glyphicon glyphicon-file"></span> 回复主题
+		<button class="btn btn-primary btn-block" data-toggle="modal" data-target="#replyPostModal">
+			回复主题
 		</button>
 
 		<!-- Modal -->
@@ -29,11 +29,18 @@
 			</div>
 		</div>
 	</div>
+	<div class="col-md-1" style="padding-right:10px;padding-left:5px;">
+		<%= link_to '返回列表', posts_path, :class => "btn btn-default pull-right btn-block" %>
+	</div>
   <div class="col-md-10">
-		<%= link_to '回到列表', posts_path, :class => "btn btn-default pull-right" %>
+		<%= will_paginate @comments,
+				:renderer => BootstrapPagination::Rails,
+				:class => "pagination-sm pagination-condensed pull-right",
+				:previous_label => "<<",
+				:next_label => ">>" %>
 	</div>
 </div>
-<div class="panel-group">
+<div class="panel-group" style="margin-bottom: 0px;">
 	<div class="panel panel-default">
 		<div class="panel-heading">
       <h4 class="panel-title">
@@ -66,9 +73,47 @@
 			</div>
 		</div>
 	</div>
-	<div class="panel panel-default">
-		<div class="panel-body">
-			xxx
+
+	<% @comments.each do |c| %>
+		<div class="panel panel-default">
+			<div class="panel-collapse collapse in">
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-2">
+							<div class="post-side-panel">
+								<p>
+									<b><%= c.user.nick %></b>
+								</p>
+								<a href="#" class="thumbnail">
+									<img data-src="holder.js/100%x150" alt="...">
+								</a>
+							</div>
+						</div>
+						<div class="col-md-10">
+							回复于 <%= I18n.l c.created_at %>
+							<hr class="hr-condensed"/>
+							<% if c.parent %>
+                <blockquote>
+                  <p><%= c.parent.content %></p>
+                  <footer>
+										<%= c.parent.user.nick %> @ <%= I18n.l c.parent.created_at %>
+                  </footer>
+                </blockquote>
+							<% end %>
+							<p class="post-content">
+								<%= c.content %>
+							</p>
+							<hr class="hr-condensed"/>
+							<a href="">回复</a>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
+	<% end %>
 </div>
+<%= will_paginate @comments,
+				:renderer => BootstrapPagination::Rails,
+				:class => "pagination-sm pagination-condensed",
+				:previous_label => "<<",
+				:next_label => ">>" %>

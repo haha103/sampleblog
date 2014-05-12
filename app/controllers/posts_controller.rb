@@ -5,12 +5,13 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.paginate(:page => params[:page], :per_page => 8).order("updated_at DESC")
+    @posts = Post.paginate(:page => params[:page], :per_page => 20).order("updated_at DESC")
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+		@comments = @post.comments.paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /posts/new
