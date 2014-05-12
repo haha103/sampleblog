@@ -1,3 +1,7 @@
+<ol class="breadcrumb">
+  <li class="active">帖子列表</li>
+</ol>
+
 <div class="row">
   <div class="col-md-2">
 		<%= link_to '<span class="glyphicon glyphicon-plus"></span> 新发表'.html_safe, new_post_path, :class => "btn btn-success" %>
@@ -16,25 +20,30 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th style="width:70%;">主题</th>
+      <th style="width:60%;">主题</th>
       <th>作者</th>
-      <th>回复/查看</th>
+      <th>回复</th>
       <th>最后发表</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @posts.each do |post| %>
+    <% @posts.each do |p| %>
       <tr>
         <td>
-					<%= link_to post.title, post %>
+					<%= link_to p.title, p %>
 				</td>
-        <td style="padding:2px;line-height: 100%">
-					<%= post.user.nick %><br/>
-          <small style="color: grey;"><%= post.created_at %></small>
+        <td style="padding-top:2px;padding-bottom:2px;line-height: 100%">
+					<%= p.user.nick %><br/>
+          <small style="color: grey;"><%= I18n.l p.created_at, format: :long %></small>
 				</td>
-        <td></td>
-        <td></td>
+        <td>
+					<%= p.comments.count %>
+				</td>
+        <td style="padding-top:2px;padding-bottom:2px;line-height: 100%">
+					<%= p.comments.last ? p.comments.last.user.nick : p.user.nick %><br/>
+					<small style="color: grey;"><%= I18n.l p.comments.last ? p.comments.last.created_at : p.created_at, format: :long %></small>
+				</td>
       </tr>
     <% end %>
   </tbody>

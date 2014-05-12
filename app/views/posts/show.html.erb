@@ -1,4 +1,9 @@
-<div class="row" style="margin-bottom:5px;">
+<ol class="breadcrumb">
+  <li><%= link_to "帖子列表", posts_path %></li>
+  <li class="active"><%= @post.title %></li>
+</ol>
+
+<div class="row" style="margin-bottom:10px;">
   <div class="col-md-1" style="padding-right:0px;">
 		<!-- Button trigger modal -->
 		<button class="btn btn-primary btn-block" data-toggle="modal" data-target="#replyPostModal">
@@ -29,10 +34,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-md-1" style="padding-right:10px;padding-left:5px;">
-		<%= link_to '返回列表', posts_path, :class => "btn btn-default pull-right btn-block" %>
-	</div>
-  <div class="col-md-10">
+  <div class="col-md-11">
 		<%= will_paginate @comments,
 				:renderer => BootstrapPagination::Rails,
 				:class => "pagination-sm pagination-condensed pull-right",
@@ -41,6 +43,7 @@
 	</div>
 </div>
 <div class="panel-group" style="margin-bottom: 0px;">
+	<% count = 1 %>
 	<div class="panel panel-default">
 		<div class="panel-heading">
       <h4 class="panel-title">
@@ -51,21 +54,23 @@
 			<div class="panel-body">
         <div class="row">
 					<div class="col-md-2">
-            <div class="post-side-panel">
-              <p>
-                <b><%= @post.user.nick %></b>
-							</p>
-							<a href="#" class="thumbnail">
-								<img data-src="holder.js/100%x150" alt="...">
-							</a>
-						</div>
+            <%= render partial: "user_profile_sidebar", locals: { u: @post.user } %>
 					</div>
           <div class="col-md-10">
-						发表于 <%= I18n.l @post.created_at %>
+            <div class="row">
+							<div class="col-md-6">
+								发表于 <%= I18n.l @post.created_at %>
+							</div>
+              <div class="col-md-6">
+                <p class="pull-right" style="margin-bottom: 0px;">
+									# <%= "#{count}" %>
+								</p>
+							</div>
+						</div>
 						<hr class="hr-condensed"/>
-						<p class="post-content">
+						<div class="post-content">
 							<%= @post.content %>
-						</p>
+						</div>
 						<hr class="hr-condensed"/>
 						<a href="">回复</a>
 					</div>
@@ -75,27 +80,32 @@
 	</div>
 
 	<% @comments.each do |c| %>
+		<% count += 1 %>
 		<div class="panel panel-default">
 			<div class="panel-collapse collapse in">
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-md-2">
-							<div class="post-side-panel">
-								<p>
-									<b><%= c.user.nick %></b>
-								</p>
-								<a href="#" class="thumbnail">
-									<img data-src="holder.js/100%x150" alt="...">
-								</a>
-							</div>
+							<%= render partial: "user_profile_sidebar", locals: { u: c.user } %>
 						</div>
 						<div class="col-md-10">
-							回复于 <%= I18n.l c.created_at %>
+							<div class="row">
+								<div class="col-md-6">
+									回复于 <%= I18n.l c.created_at %>
+								</div>
+								<div class="col-md-6">
+									<p class="pull-right" style="margin-bottom: 0px;">
+										# <%= "#{count}" %>
+										</p>
+								</div>
+							</div>
 							<hr class="hr-condensed"/>
-							<%= render partial: "quote", locals: { c: c } %>
-							<p class="post-content">
-								<%= c.content %>
-							</p>
+              <div class="post-content">
+								<%= render partial: "quote", locals: { c: c } %>
+								<p>
+									<%= c.content %>
+								</p>
+							</div>
 							<hr class="hr-condensed"/>
 							<a href="">回复</a>
 						</div>
