@@ -7,6 +7,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+scale = 10
+
 ActiveSupport::JSON.decode(File.read('db/seeds/users.json')).each do |d|
 	User.create!(d)
 end
@@ -26,7 +28,7 @@ end
 	b.save
 end
 
-1.upto(100) do |i|
+1.upto(100 * scale) do |i|
 	srand
 	p = Post.new
 	p.title = "帖子标题 blablabla #{i}"
@@ -36,7 +38,7 @@ end
 	p.save
 end
 
-1.upto(500) do |i|
+1.upto(500 * scale) do |i|
 	srand
 	c = Comment.new
 	c.post = Post.find(rand(Post.count) + 1)
@@ -46,7 +48,7 @@ end
 	c.save
 end
 
-1.upto(1000) do |i|
+1.upto(1000 * scale) do |i|
 	c = Comment.new
 	c.parent = Comment.find(rand(Comment.count) + 1)
 	c.post = c.parent.post
