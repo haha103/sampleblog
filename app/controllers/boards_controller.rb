@@ -11,6 +11,7 @@ class BoardsController < ApplicationController
   # GET /boards/1
   # GET /boards/1.json
   def show
+		@posts = @board.posts.paginate(:page => params[:page], :per_page => 20).order("updated_at DESC")
   end
 
   # GET /boards/new
