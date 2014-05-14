@@ -1,5 +1,7 @@
 Sampleblog::Application.routes.draw do
 
+  resources :labels
+
   resources :categories
 
   resources :boards

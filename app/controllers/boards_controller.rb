@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class BoardsController < ApplicationController
   before_action :set_board, only: [:show, :edit, :update, :destroy]
 
@@ -11,7 +13,11 @@ class BoardsController < ApplicationController
   # GET /boards/1
   # GET /boards/1.json
   def show
-		@posts = @board.posts.paginate(:page => params[:page], :per_page => 20).order("updated_at DESC")
+		@posts = @board.posts.order("updated_at DESC")
+		@posts = @posts.select do |p|
+			p.label.id.to_s == params[:label]
+		end if params[:label]
+		@posts = @posts.paginate(:page => params[:page], :per_page => 20)
   end
 
   # GET /boards/new

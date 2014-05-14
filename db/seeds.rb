@@ -19,12 +19,20 @@ end
 	c.save
 end
 
+1.upto(50) do |i|
+	l = Label.new
+	l.name = "测试标签 #{i}"
+	l.save
+end
+
 1.upto(20) do |i|
 	srand
 	b = Board.new
 	b.name = "测试板块 #{i}"
 	b.moderator = User.find(rand(User.count) + 1)
 	b.category = Category.find(rand(Category.count) + 1)
+	b.labels = []
+	b.labels += Label.all.sample(15)
 	b.save
 end
 
@@ -35,6 +43,7 @@ end
 	p.content = "这是帖子内容 #{i} blablablabla"
 	p.user = User.find(rand(User.count) + 1)
 	p.board = Board.find(rand(Board.count) + 1)
+	p.label = p.board.labels.sample
 	p.save
 end
 
