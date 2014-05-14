@@ -16,13 +16,19 @@
 								<td style="width:56px;">
 									<img data-src="holder.js/40x40" alt="...">
 								</td>
-								<td style="width:60%;"><%= link_to board.name, posts_path(:board => board) %></td>
-								<td><%= board.posts.count %> / <small><%= board.posts.map { |p| p.comments }.flatten.count %></small></td>
-									<td>
-										<%= board.posts.last ? board.posts.last.title : "没有文章" %>
-										<br/>
-										<small><%= board.posts.last ? (I18n.l board.posts.last.created_at, :format => :long) : "N/A" %></small>
-									</td>
+								<td style="width:60%;">
+									<%= link_to board.name, posts_path(:board => board) %>
+                  <br/>
+									<small class="font-grey">版主：<%= board.moderator.nick %></small>
+								</td>
+								<td>
+									<%= board.posts.count %> / <small class="font-grey"><%= board.comments.count %></small>
+								</td>
+								<td>
+									<%= board.posts.last ? board.posts.last.title : "没有文章" %>
+									<br/>
+									<small class="font-grey"><%= board.posts.last ? (I18n.l board.posts.last.created_at, :format => :long) : "N/A" %></small>
+								</td>
 							</tr>
 						<% end %>
 					</tbody>
