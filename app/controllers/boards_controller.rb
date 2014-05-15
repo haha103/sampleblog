@@ -14,9 +14,10 @@ class BoardsController < ApplicationController
   # GET /boards/1.json
   def show
 		@posts = @board.posts.order("updated_at DESC")
+		@current_label = params[:label]
 		@posts = @posts.select do |p|
-			p.label.id.to_s == params[:label]
-		end if params[:label]
+			p.label.id.to_s == @current_label
+		end	if @current_label
 		@posts = @posts.paginate(:page => params[:page], :per_page => 20)
   end
 
