@@ -5,11 +5,11 @@
 </ol>
 
 <ul class="list-inline">
-	<li style="padding-bottom:5px;padding-right:0px;">
+	<li style="padding-bottom:5px;padding-right:0px;margin-right:-5px;">
 		<%= link_to "全部帖子", board_path(@board), :class => "btn btn-#{ @current_label ? "default" : "success" } btn-sm" %>
 	</li>
 	<% @board.labels.each do |l| %>
-    <li style="padding-bottom:5px;padding-right:0px;">
+    <li style="padding-bottom:5px;padding-right:0px;margin-right:-5px;">
 			<%= link_to l.name, board_path(@board, :label => l.id), :class => "btn btn-#{ @current_label == l.id.to_s ? "success" : "default" } btn-sm" %>
 		</li>
 	<% end %>
