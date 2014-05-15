@@ -1,9 +1,10 @@
 $lightgray: #F8F8F8;
 
-
+/*
 * {
 	border-radius: 0px !important;
 }
+*/
 
 .table > thead > tr > th,
 .table > thead > tr > td,
@@ -59,4 +60,14 @@ $lightgray: #F8F8F8;
 
 .font-grey {
 	color: grey
+}
+
+.list-inline > li.list-wrap {
+	padding-bottom:5px;
+	padding-right:0px;
+	margin-right:-5px;
+}
+
+.btn .badge {
+	top: 0px;
 }
