@@ -10,5 +10,6 @@
  *
  *= require_self
  *= require bootstrap-sass
+ *= require bootstrap-wysihtml5/b3
  *= require custom
  */

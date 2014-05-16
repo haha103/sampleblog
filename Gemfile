@@ -51,3 +51,4 @@ gem 'will_paginate-bootstrap'
 gem 'holder_rails'
 gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 gem 'paperclip', github: 'thoughtbot/paperclip'
+gem 'bootstrap-wysihtml5-rails'
