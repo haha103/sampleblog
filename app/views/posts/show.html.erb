@@ -11,30 +11,7 @@
 		<button class="btn btn-primary btn-block" data-toggle="modal" data-target="#replyPostModal">
 			回复主题
 		</button>
-
-		<!-- Modal -->
-		<div class="modal fade" id="replyPostModal" tabindex="-1" role="dialog" aria-labelledby="replyPostModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="replyPostModal">回复主题</h4>
-					</div>
-					<div class="modal-body">
-						<form role="form">
-							<div class="form-group">
-								<label for="replyPost">主题: <%= @post.title %></label>
-								<textarea class="form-control wysihtml5" rows="8" name="comment"></textarea>
-							</div>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">撤销</button>
-						<button type="button" class="btn btn-primary">回复</button>
-					</div>
-				</div>
-			</div>
-		</div>
+		<%= render partial: "modal_reply", locals: { post: @post } %>
 	</div>
   <div class="col-md-11">
 		<%= will_paginate @comments,
@@ -45,7 +22,6 @@
 	</div>
 </div>
 <div class="panel-group" style="margin-bottom: 5px;">
-	<% count = 1 %>
 	<div class="panel panel-default">
 		<div class="panel-heading">
       <h4 class="panel-title">
@@ -65,13 +41,13 @@
 							</div>
               <div class="col-md-6">
                 <p class="pull-right" style="margin-bottom: 0px;">
-									# <%= "#{count}" %>
+									# 1
 								</p>
 							</div>
 						</div>
 						<hr class="hr-condensed"/>
 						<div class="post-content">
-							<%= @post.content %>
+							<%= @post.content.html_safe %>
 						</div>
 						<hr class="hr-condensed"/>
 						<a href="">回复</a>
@@ -81,8 +57,8 @@
 		</div>
 	</div>
 
+	<% count = 0 %>
 	<% @comments.each do |c| %>
-		<% count += 1 %>
 		<div class="panel panel-default">
 			<div class="panel-collapse collapse in">
 				<div class="panel-body">
@@ -97,7 +73,7 @@
 								</div>
 								<div class="col-md-6">
 									<p class="pull-right" style="margin-bottom: 0px;">
-										# <%= "#{count}" %>
+										# <%= "#{@comments_idx_start_with + count}" %>
 										</p>
 								</div>
 							</div>
@@ -105,7 +81,7 @@
               <div class="post-content">
 								<%= render partial: "quote", locals: { c: c } %>
 								<p>
-									<%= c.content %>
+									<%= c.content.html_safe %>
 								</p>
 							</div>
 							<hr class="hr-condensed"/>
@@ -115,6 +91,7 @@
 				</div>
 			</div>
 		</div>
+		<% count += 1 %>
 	<% end %>
 </div>
 <%= will_paginate @comments,

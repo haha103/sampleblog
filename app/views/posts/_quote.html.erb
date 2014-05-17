@@ -2,7 +2,7 @@
 	<blockquote class="blockquote-sm">
 		<p>
 			<%= render partial: "quote", locals: { c: c.parent } %>
-			<%= c.parent.content %>
+			<%= c.parent.content.html_safe %>
 		</p>
 		<footer>
 			<%= c.parent.user.nick %> @ <%= I18n.l c.parent.created_at %>

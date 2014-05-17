@@ -12,6 +12,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
 		@comments = @post.comments.paginate(:page => params[:page], :per_page => 10)
+		@comments_idx_start_with = ((params[:page] ? params[:page].to_i : 1) - 1) * 10 + 2
   end
 
   # GET /posts/new

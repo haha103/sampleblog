@@ -40,7 +40,7 @@
 				</ul>
         <div class="pull-right" style="margin-right: -15px;">
 					<% if current_user %>
-						<%= link_to content_tag(:b, current_user.nick), user_path(current_user.id), :class => "navbar-link" %>
+						<%= link_to content_tag(:b, User.find(current_user).nick), user_path(current_user), :class => "navbar-link" %>
 						&nbsp;
 						<%= link_to '<span class="glyphicon glyphicon-log-out"></span> &nbsp;注销'.html_safe, log_out_path, :class => "btn btn-danger btn-sm navbar-btn" %>
 					<% else %>	

@@ -1,0 +1,26 @@
+<!-- Modal -->
+<div class="modal fade" id="replyPostModal" tabindex="-1" role="dialog" aria-labelledby="replyPostModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+			<%= form_for Comment.new, html: { role: "form" } do |f| %>
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="replyPostModal">回复主题</h4>
+				</div>
+				<div class="modal-body">					
+					<div class="form-group">
+						<%= f.label :content, "主题：#{post.title}" %>
+						<%= f.text_area :content, row: "8", class: "form-control wysihtml5" %>
+						<%= hidden_field_tag :post_id, post.id %>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">撤销</button>
+					<button type="submit" class="btn btn-primary" <%= current_user ? "" : "disabled" %>>回复</button>
+				</div>
+			<% end %>
+			
+		</div>
+	</div>
+</div>

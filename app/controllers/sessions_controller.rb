@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
 	def create
 		user = User.authenticate(params[:nick], params[:passwd])
 		if user
-			session[:user] = user
+			session[:user_id] = user.id
 		else
 			flash[:authentication_error] = {
 				:class => "danger",
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 	end
 
 	def destroy
-		session[:user] = nil
+		session[:user_id] = nil
 		redirect_to request.referer
 	end
 end
