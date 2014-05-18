@@ -47,7 +47,7 @@
 	</li>
 	<% @board.labels.each do |l| %>
     <li class="list-wrap">
-			<%= link_to "#{l.name} &nbsp;<span class=\"badge\">#{l.posts.select { |p| p.board.name == @board.name }.count }</span>".html_safe, board_path(@board, :label => l.id), :class => "btn btn-#{ @current_label == l.id.to_s ? "success" : "default" } btn-sm" %>
+			<%= link_to "#{l.name} &nbsp;<span class=\"badge\">#{l.posts.select { |p| p.board.id == @board.id }.count }</span>".html_safe, board_path(@board, :label => l.id), :class => "btn btn-#{ @current_label == l.id.to_s ? "success" : "default" } btn-sm" %>
 		</li>
 	<% end %>
 </ul>
@@ -73,7 +73,7 @@
           <small style="color: grey;"><%= I18n.l p.created_at, format: :long %></small>
 				</td>
         <td>
-					<%= p.comments.count %>
+					<%= p.comment_count %>
 				</td>
         <td style="padding-top:2px;padding-bottom:2px;line-height: 100%">
 					<%= p.comments.last ? p.comments.last.user.nick : p.user.nick %><br/>

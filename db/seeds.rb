@@ -34,6 +34,8 @@ end
 	b.labels = []
 	b.labels += Label.all.sample(15)
 	b.banner = "测试通告 #{i} ... "
+	b.post_count = 0
+	b.comment_count = 0
 	b.save
 end
 
@@ -44,6 +46,9 @@ end
 	p.content = "这是帖子内容 #{i} blablablabla"
 	p.user = User.find(rand(User.count) + 1)
 	p.board = Board.find(rand(Board.count) + 1)
+	p.board.post_count += 1
+	p.board.save
+	p.comment_count = 0
 	p.label = p.board.labels.sample
 	p.save
 end
@@ -55,6 +60,10 @@ end
 	c.user = User.find(rand(User.count) + 1)
 	c.content = "这是帖子回复 #{i} blablabla ..."
 	c.parent = nil
+	c.post.comment_count += 1
+	c.post.save
+	c.post.board.comment_count += 1
+	c.post.board.save
 	c.save
 end
 
@@ -64,5 +73,9 @@ end
 	c.post = c.parent.post
 	c.user = User.find(rand(User.count) + 1)
 	c.content = "这是回复评论\"#{c.parent.content}\"的评论 ..."
+	c.post.comment_count += 1
+	c.post.save
+	c.post.board.comment_count += 1
+	c.post.board.save
 	c.save
 end

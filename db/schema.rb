@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140517061036) do
+ActiveRecord::Schema.define(version: 20140518132229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20140517061036) do
     t.integer  "moderator_id"
     t.integer  "category_id"
     t.string   "banner"
+    t.integer  "post_count"
+    t.integer  "comment_count"
   end
 
   add_index "boards", ["category_id"], name: "index_boards_on_category_id", using: :btree
@@ -66,6 +68,7 @@ ActiveRecord::Schema.define(version: 20140517061036) do
     t.integer  "user_id"
     t.integer  "board_id"
     t.integer  "label_id"
+    t.integer  "comment_count"
   end
 
   add_index "posts", ["board_id"], name: "index_posts_on_board_id", using: :btree

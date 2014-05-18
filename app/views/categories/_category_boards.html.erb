@@ -16,7 +16,7 @@
 							<small class="font-grey">版主：<%= board.moderator.nick %></small>
 						</td>
 						<td>
-							<%= board.posts.count %> / <small class="font-grey"><%= board.comments.count %></small>
+							<%= board.post_count %> / <small class="font-grey"><%= board.comment_count %></small>
 						</td>
 						<td>
 							<%= board.posts.last ? board.posts.last.title : "没有文章" %>
