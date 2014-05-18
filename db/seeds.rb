@@ -7,7 +7,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-scale = 10
+scale = 1
 
 ActiveSupport::JSON.decode(File.read('db/seeds/users.json')).each do |d|
 	User.create!(d)
@@ -25,7 +25,7 @@ end
 	l.save
 end
 
-1.upto(20) do |i|
+1.upto(2 * scale) do |i|
 	srand
 	b = Board.new
 	b.name = "测试板块 #{i}"
