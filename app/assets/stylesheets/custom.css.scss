@@ -1,4 +1,5 @@
 $lightgray: #F8F8F8;
+$lightgray1: #dddddd;
 
 /*
 * {
@@ -70,4 +71,9 @@ $lightgray: #F8F8F8;
 
 .btn .badge {
 	top: 0px;
+}
+
+.table-tb-bordered {
+	border-top: $lightgray1 solid 1px;
+	border-bottom: $lightgray1 solid 1px;
 }

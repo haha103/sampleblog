@@ -4,18 +4,27 @@
   <li class="active"><%= @board.name %></li>
 </ol>
 
-<ul class="list-inline">
-	<li class="list-wrap">
-		<%= link_to "全部帖子", board_path(@board), :class => "btn btn-#{ @current_label ? "default" : "success" } btn-sm" %>
-	</li>
-	<% @board.labels.each do |l| %>
-    <li class="list-wrap">
-			<%= link_to "#{l.name} &nbsp;<span class=\"badge\">#{l.posts.select { |p| p.board.name == @board.name }.count }</span>".html_safe, board_path(@board, :label => l.id), :class => "btn btn-#{ @current_label == l.id.to_s ? "success" : "default" } btn-sm" %>
-		</li>
-	<% end %>
-</ul>
-
-<br/>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <div class="row">
+				<div class="col-md-2">
+					<b><%= @board.name %></b>
+				</div>
+        <div class="col-md-10">
+          <div class="pull-right">
+						<small>版主：<b><%= @board.moderator.nick %></b> &nbsp; | &nbsp;</small>
+						<small>主题：<b><%= @board.posts.count %></b> &nbsp;| &nbsp;</small>
+						<small>回复：<b><%= @board.comments.count %></b></small>
+					</div>
+				</div>
+			</div>
+		</h4>
+	</div>
+  <div class="panel-body">
+		<%= @board.banner.html_safe %>
+	</div>
+</div>
 
 <div class="row">
   <div class="col-md-2">
@@ -31,6 +40,17 @@
 </div>
 
 <hr class="hr-condensed"/>
+
+<ul class="list-inline">
+	<li class="list-wrap">
+		<%= link_to "全部帖子", board_path(@board), :class => "btn btn-#{ @current_label ? "default" : "success" } btn-sm" %>
+	</li>
+	<% @board.labels.each do |l| %>
+    <li class="list-wrap">
+			<%= link_to "#{l.name} &nbsp;<span class=\"badge\">#{l.posts.select { |p| p.board.name == @board.name }.count }</span>".html_safe, board_path(@board, :label => l.id), :class => "btn btn-#{ @current_label == l.id.to_s ? "success" : "default" } btn-sm" %>
+		</li>
+	<% end %>
+</ul>
 
 <table class="table table-hover">
   <thead>
@@ -63,3 +83,18 @@
     <% end %>
   </tbody>
 </table>
+
+<hr class="hr-condensed"/>
+
+<div class="row">
+  <div class="col-md-2">
+		<%= link_to '<span class="glyphicon glyphicon-plus"></span> 新发表'.html_safe, new_post_path, :class => "btn btn-success" %>
+	</div>
+  <div class="col-md-10">
+		<%= will_paginate @posts,
+				:renderer => BootstrapPagination::Rails,
+				:class => "pagination-sm pagination-condensed pull-right",
+				:previous_label => "<<",
+				:next_label => ">>" %>
+	</div>
+</div>

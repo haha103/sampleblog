@@ -33,6 +33,7 @@ end
 	b.category = Category.find(rand(Category.count) + 1)
 	b.labels = []
 	b.labels += Label.all.sample(15)
+	b.banner = "测试通告 #{i} ... "
 	b.save
 end
 
