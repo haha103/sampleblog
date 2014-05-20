@@ -2,6 +2,14 @@
   <li class="active">所有板块</li>
 </ol>
 
+<div class="stats-bar">
+	<span class="glyphicon glyphicon-stats"></span>&nbsp;
+  <small class="font-grey">今日：</small><%= Post.where("created_at::date = ?", Date.today).count %><small class="font-grey"> | </small>
+	<small class="font-grey">昨日：</small><%= Post.where("created_at::date = ?", Date.yesterday).count %><small class="font-grey"> | </small>
+	<small class="font-grey">帖子：</small><%= Comment.all.count %><small class="font-grey"> | </small>
+	<small class="font-grey">会员：</small><%= User.all.count %></small>
+</div>
+
 <div class="panel-group">
 	<% @categories.each do |c| %>
 		<%= render partial: "category_boards", :locals => { category: c } %>
