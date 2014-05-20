@@ -15,6 +15,6 @@
 //= require bootstrap
 //= require holder
 //= require bootstrap-wysihtml5/b3
-//= require bootstrap-wysihtml5/locales
+//= require bootstrap-wysihtml5/locales/zh-CN
 //= require turbolinks
 //= require_tree .

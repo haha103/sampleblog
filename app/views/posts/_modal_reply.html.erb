@@ -11,7 +11,7 @@
 				<div class="modal-body">					
 					<div class="form-group">
 						<%= f.label :content, "主题：#{post.title}" %>
-						<%= f.text_area :content, row: "8", class: "form-control wysihtml5" %>
+						<%= f.text_area :content, rows: "10", class: "form-control wysihtml5" %>
 						<%= hidden_field_tag :post_id, post.id %>
 					</div>
 				</div>

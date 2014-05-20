@@ -99,3 +99,24 @@
 				:class => "pagination-sm pagination-condensed",
 				:previous_label => "<<",
 				:next_label => ">>" %>
+
+<% if current_user %>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-2">
+					<%= render partial: "user_profile_sidebar", locals: { u: User.find(current_user) } %>
+				</div>
+				<div class="col-md-10">
+					<%= form_for Comment.new, html: { role: "form" } do |f| %>
+						<div class="form-group">
+							<%= f.text_area :content, rows: "10", class: "form-control wysihtml5" %>
+							<%= hidden_field_tag :post_id, @post.id %>
+						</div>
+						<button type="submit" class="btn btn-primary">回复</button>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+<% end %>

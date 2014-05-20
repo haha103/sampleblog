@@ -13,7 +13,7 @@ ActiveSupport::JSON.decode(File.read('db/seeds/users.json')).each do |d|
 	User.create!(d)
 end
 
-1.upto(5) do |i|
+1.upto(scale == 1 ? 1 : 5) do |i|
 	c = Category.new
 	c.name = "测试分类 #{i}"
 	c.save
