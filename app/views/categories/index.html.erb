@@ -4,10 +4,12 @@
 
 <div class="stats-bar">
 	<span class="glyphicon glyphicon-stats"></span>&nbsp;
-  <small class="font-grey">今日：</small><%= Post.where("created_at::date = ?", Date.today).count %><small class="font-grey"> | </small>
-	<small class="font-grey">昨日：</small><%= Post.where("created_at::date = ?", Date.yesterday).count %><small class="font-grey"> | </small>
-	<small class="font-grey">帖子：</small><%= Comment.all.count %><small class="font-grey"> | </small>
-	<small class="font-grey">会员：</small><%= User.all.count %></small>
+  <small class="font-grey">今日主题：</small><%= Post.where("created_at::date = ?", Date.today).count %><small class="font-grey"> | </small>
+	<small class="font-grey">昨日主题：</small><%= Post.where("created_at::date = ?", Date.yesterday).count %><small class="font-grey"> | </small>
+	<small class="font-grey">今日回复：</small><%= Comment.where("created_at::date = ?", Date.today).count %><small class="font-grey"> | </small>
+	<small class="font-grey">昨日回复：</small><%= Comment.where("created_at::date = ?", Date.yesterday).count %><small class="font-grey"> | </small>
+	<small class="font-grey">帖子总数：</small><%= Comment.all.count %><small class="font-grey"> | </small>
+	<small class="font-grey">会员：</small><%= User.all.count %>
 </div>
 
 <div class="panel-group">
