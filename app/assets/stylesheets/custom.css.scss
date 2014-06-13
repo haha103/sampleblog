@@ -1,11 +1,17 @@
 $lightgray: #F8F8F8;
 $lightgray1: #dddddd;
 
-/*
 * {
 	border-radius: 0px !important;
 }
-*/
+
+.badge {
+	border-radius: 10px !important;
+}
+
+.btn-default .badge {
+	background-color: gray;
+}
 
 .table > thead > tr > th,
 .table > thead > tr > td,
