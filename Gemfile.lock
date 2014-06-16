@@ -40,6 +40,7 @@ GEM
       sass (~> 3.2)
     bootstrap-wysihtml5-rails (0.3.1.24)
       railties (>= 3.0)
+    bootstrap_form (2.1.1)
     builder (3.1.4)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -136,6 +137,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass (~> 3.1.1)
   bootstrap-wysihtml5-rails
+  bootstrap_form
   coffee-rails (~> 4.0.0)
   holder_rails
   jbuilder (~> 1.2)
