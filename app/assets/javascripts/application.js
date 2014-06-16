@@ -17,5 +17,7 @@
 //= require bootstrap-wysihtml5/b3
 //= require bootstrap-wysihtml5/locales/zh-CN
 //= require jasny-bootstrap.min
+//= require jquery.validate
+//= require jquery.validate.additional-methods
 //= require turbolinks
 //= require_tree .
