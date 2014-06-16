@@ -41,10 +41,13 @@ function _jquery_validate(selector, rules, messages) {
 			$(element).after('<span class="form-control-feedback glyphicon glyphicon-remove" style="display: block"></span>');
     },
     unhighlight: function(element) {
-      fg = $(element).closest('.form-group');
-      fg.removeClass('has-error');
-      $(element).closest('.validate-message').remove();
-			$(element).siblings('.validate-message').remove();
+			if ($(element).val() == "") {
+				$(element).siblings('.form-control-feedback').remove();
+				fg = $(element).closest('.form-group');
+				fg.removeClass('has-error');
+				$(element).closest('.validate-message').remove();
+				$(element).siblings('.validate-message').remove();
+			}
     },
     success: function(element) {
 			$(element).siblings('.form-control-feedback').removeClass('glyphicon-remove').addClass('glyphicon-ok');
