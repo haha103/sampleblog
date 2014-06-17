@@ -45,6 +45,7 @@ function _jquery_validate(selector, rules, messages) {
 				$(element).siblings('.form-control-feedback').remove();
 				fg = $(element).closest('.form-group');
 				fg.removeClass('has-error');
+				fg.removeClass('has-success');
 				$(element).closest('.validate-message').remove();
 				$(element).siblings('.validate-message').remove();
 			}
