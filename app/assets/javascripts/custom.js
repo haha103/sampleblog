@@ -16,10 +16,17 @@ function load_common_proc() {
 function validations_on_demand() {
 	if ($('form').length == 0)
 		return;
+
+	$.validator.addMethod("mobile", function(value, element) {
+    return this.optional(element) || _validate_mobile(value);
+  }, "非法手机号码");
+	
 	_jquery_validate('#new_user', {
-		"user[email]": { email: true }
+		"user[email]": { email: true },
+		"user[mobile]": { mobile: true }
 	}, {
-		"user[email]": { email: "邮箱格式不正确" }
+		"user[email]": { email: "邮箱格式不正确" },
+		"user[mobile]": { mobile: "手机格式不正确" }
 	});
 }
 
@@ -51,7 +58,11 @@ function _jquery_validate(selector, rules, messages) {
 			}
     },
     success: function(element) {
-			$(element).siblings('.form-control-feedback').removeClass('glyphicon-remove').addClass('glyphicon-ok');
+			if ($(element).siblings('.form-control-feedback').length == 0) {
+				$(element).after('<span class="form-control-feedback glyphicon glyphicon-ok" style="display: block"></span>');
+			} else {
+				$(element).siblings('.form-control-feedback').removeClass('glyphicon-remove').addClass('glyphicon-ok');	
+			}
       fg = $(element).closest('.form-group');
 			fg.removeClass('has-error');
 			fg.addClass('has-success');
@@ -73,4 +84,24 @@ function _jquery_validate(selector, rules, messages) {
       form.submit();
     }
 	});
+}
+
+
+function _validate_mobile(value) {
+	var resp = "";
+	$.getJSON('http://tcc.taobao.com/cc/json/mobile_tel_segment.htm?callback=?&tel=' + value, function(data) { console.log(data); resp = data; });
+	while(1) {
+		__sleep(1000, function() {});
+		if (resp != "") {
+			break;
+		}
+	}
+	if (resp && resp.telString) {
+		return true;
+	}
+	return false;
+}
+
+function __sleep(milliseconds, cb) {
+	setTimeout(function() { cb(); }, milliseconds);
 }
