@@ -1,5 +1,6 @@
 Sampleblog::Application.routes.draw do
 
+  get "validation/mobile"
   resources :labels
 
   resources :categories
