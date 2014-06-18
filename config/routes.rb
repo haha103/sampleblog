@@ -1,6 +1,10 @@
 Sampleblog::Application.routes.draw do
 
   get "validation/mobile"
+	get "validation/uniq_user_nick"
+	get "validation/uniq_user_email"
+	get "validation/valid_user_mobile"
+	
   resources :labels
 
   resources :categories

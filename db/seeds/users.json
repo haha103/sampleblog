@@ -1,12 +1,12 @@
 [
-	{ "nick": "haha100", "name":"Liu Wei 0", "passwd":"haha100" },
-	{ "nick": "haha101", "name":"Liu Wei 1", "passwd":"haha101" },
-	{ "nick": "haha102", "name":"Liu Wei 2", "passwd":"haha102" },
-	{ "nick": "haha103", "name":"Liu Wei 3", "passwd":"haha103" },
-	{ "nick": "haha104", "name":"Liu Wei 4", "passwd":"haha104" },
-	{ "nick": "haha105", "name":"Liu Wei 5", "passwd":"haha105" },
-	{ "nick": "haha106", "name":"Liu Wei 6", "passwd":"haha106" },
-	{ "nick": "haha107", "name":"Liu Wei 7", "passwd":"haha107" },
-	{ "nick": "haha108", "name":"Liu Wei 8", "passwd":"haha108" },
-	{ "nick": "haha109", "name":"Liu Wei 9", "passwd":"haha109" }
+	{ "nick": "haha100", "name":"Liu Wei 0", "passwd":"haha100", "email": "haha100@163.com", "mobile": "13548140100" },
+	{ "nick": "haha101", "name":"Liu Wei 1", "passwd":"haha101", "email": "haha101@163.com", "mobile": "13548140101" },
+	{ "nick": "haha102", "name":"Liu Wei 2", "passwd":"haha102", "email": "haha102@163.com", "mobile": "13548140102" },
+	{ "nick": "haha103", "name":"Liu Wei 3", "passwd":"haha103", "email": "haha103@163.com", "mobile": "13548140103" },
+	{ "nick": "haha104", "name":"Liu Wei 4", "passwd":"haha104", "email": "haha104@163.com", "mobile": "13548140104" },
+	{ "nick": "haha105", "name":"Liu Wei 5", "passwd":"haha105", "email": "haha105@163.com", "mobile": "13548140105" },
+	{ "nick": "haha106", "name":"Liu Wei 6", "passwd":"haha106", "email": "haha106@163.com", "mobile": "13548140106" },
+	{ "nick": "haha107", "name":"Liu Wei 7", "passwd":"haha107", "email": "haha107@163.com", "mobile": "13548140107" },
+	{ "nick": "haha108", "name":"Liu Wei 8", "passwd":"haha108", "email": "haha108@163.com", "mobile": "13548140108" },
+	{ "nick": "haha109", "name":"Liu Wei 9", "passwd":"haha109", "email": "haha109@163.com", "mobile": "13548140109" }
 ]

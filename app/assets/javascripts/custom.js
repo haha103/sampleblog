@@ -18,17 +18,19 @@ function validations_on_demand() {
 		return;
 
 	_jquery_validate('#new_user', {
-		"user[email]": { email: true },
-		"user[mobile]": {
-			remote: function() {
-				var url = '/validation/mobile?mobile=' + $('input[name="user[mobile]"]').val();
-				var r = { url: url };
-				return r;
-			}
-		}
+		"user[nick]": { remote: { url: '/validation/uniq_user_nick' } },
+		"user[email]": {
+			email: true,
+			remote: { url: '/validation/uniq_user_email' }
+		},
+		"user[mobile]": { remote: { url: '/validation/valid_user_mobile' } }
 	}, {
-		"user[email]": { email: "邮箱格式不正确" },
-		"user[mobile]": { remote: "手机格式不正确" }
+		"user[nick]": { remote: "该昵称已经被占用" },
+		"user[email]": {
+			email: "邮箱格式不正确",
+			remote: "该邮箱地址已经被他人占用",
+		},
+		"user[mobile]": { remote: "手机格式不正确或者该手机号码已被他人占用" }
 	});
 }
 
