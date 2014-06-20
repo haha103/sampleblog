@@ -1,6 +1,12 @@
+require 'securerandom'
+
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+	def activation
+		render :json => params
+	end
+	
   # GET /users
   # GET /users.json
   def index
@@ -25,9 +31,14 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+		@user.activated = false
+		@user.activation_key = SecureRandom.uuid
 
     respond_to do |format|
       if @user.save
+
+				UserMailer.activation_email(@user).deliver
+				
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render action: 'show', status: :created, location: @user }
       else

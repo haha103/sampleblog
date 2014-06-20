@@ -15,6 +15,9 @@ Sampleblog::Application.routes.draw do
 	
   resources :comments
 
+
+	get "users/activation", :as => "user_activation"
+	
   resources :users
 
   resources :posts
