@@ -1,0 +1,29 @@
+<p>
+  <strong>Nick:</strong>
+  <%= @user.nick %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Passwd:</strong>
+  <%= @user.passwd %>
+</p>
+
+<%= image_tag @user.avatar.url(:thumb) %>
+
+<p>
+  <strong>Activated:</strong>
+  <%= @user.activated ? "true" : "false" %>
+</p>
+
+<p>
+  <strong>Activation Key:</strong>
+  <%= @user.activation_key %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

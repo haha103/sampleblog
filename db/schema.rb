@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140620022101) do
+ActiveRecord::Schema.define(version: 20140620080823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,12 @@ ActiveRecord::Schema.define(version: 20140620022101) do
     t.string   "mobile"
     t.string   "activation_key"
     t.boolean  "activated"
+    t.string   "id_scan_file_name"
+    t.string   "id_scan_content_type"
+    t.integer  "id_scan_file_size"
+    t.datetime "id_scan_updated_at"
+    t.boolean  "identified"
+    t.boolean  "reg_completed"
   end
 
 end

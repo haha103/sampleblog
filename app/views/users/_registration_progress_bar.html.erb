@@ -1,0 +1,17 @@
+<div class="progress">
+  <div class="progress-bar progress-bar-success" style="width: 25%">
+    <span>注册帐号</span>
+  </div>
+	<% state = (@user.reg_completed || @user.identified) ? "success" : (@user.activated ? "success" : "primary") %>
+  <div class="progress-bar progress-bar-<%= state %>" style="width: 25%">
+    <span>激活帐号</span>
+  </div>
+	<% state = @user.reg_completed ? "success" : (@user.identified ? "success" : (@user.activated ? "primary" : "inprogress")) %>
+  <div class="progress-bar progress-bar-<%= state %>" style="width: 25%">
+    <span>实名认证</span>
+  </div>
+	<% state = @user.reg_completed ? "success" : (@user.identified ? "primary" : "inprogress") %>
+	<div class="progress-bar progress-bar-<%= state %>" style="width: 25%">
+    <span>完善其他信息</span>
+  </div>
+</div>

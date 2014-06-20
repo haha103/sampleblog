@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
 	def activation
-		users = User.where(activation_key: params[:activation_key])
+		users = User.where(activation_key: params[:user][:activation_key])
 		if users.length > 1
 			render json: "multiple user with same activation key", status: :unprocessable_entity
 		elsif users.length == 1

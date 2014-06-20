@@ -1,31 +1,12 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Nick:</strong>
-  <%= @user.nick %>
-</p>
+<% if notice && !notice.empty? %>
+	<div class="alert alert-info">
+		<p><%= notice %></p>
+	</div>
+<% end %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-
-<p>
-  <strong>Passwd:</strong>
-  <%= @user.passwd %>
-</p>
-
-<%= image_tag @user.avatar.url(:thumb) %>
-
-<p>
-  <strong>Activated:</strong>
-  <%= @user.activated ? "true" : "false" %>
-</p>
-
-<p>
-  <strong>Activation Key:</strong>
-  <%= @user.activation_key %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<% if @user.reg_completed %>
+	<%= render partial: "show_details" %>
+<% else %>
+	<%= render partial: "continue_registration" %>
+<% end %>

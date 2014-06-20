@@ -1,0 +1,15 @@
+<%= render partial: "registration_progress_bar" %>
+
+<h3>完成注册</h3>
+
+<hr/>
+
+<% if @user.identified %>
+	<%= render partial: "registration_reg_completion" %>
+<% elsif @user.activated %>
+	<%= render partial: "registration_identification" %>
+<% else %>
+	<%= render partial: "registration_activation" %>
+<% end %>
+
+
