@@ -1,10 +1,26 @@
+# -*- coding: utf-8 -*-
 require 'securerandom'
 
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
 	def activation
-		render :json => params
+		users = User.where(activation_key: params[:activation_key])
+		if users.length > 1
+			render json: "multiple user with same activation key", status: :unprocessable_entity
+		elsif users.length == 1
+			user = users.first
+			puts "#{user.inspect}"
+			user.activation_key = ""
+			user.activated = true
+			if user.save
+				redirect_to user, notice: '您已成功激活你的帐号'
+			else
+				render json: user.errors, status: :unprocessable_entity
+			end
+		else
+			render json: "invalid activation key", status: :unprocessable_entity
+		end
 	end
 	
   # GET /users
