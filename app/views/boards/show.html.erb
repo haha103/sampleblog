@@ -40,14 +40,16 @@
 </div>
 
 <hr class="hr-condensed"/>
-
 <ul class="list-inline">
 	<li class="list-wrap">
 		<%= link_to "全部帖子", board_path(@board), :class => "btn btn-#{ @current_label ? "default" : "success" } btn-sm" %>
 	</li>
-	<% @board.labels.each do |l| %>
-    <li class="list-wrap">
-			<%= link_to "#{l.name} &nbsp;<span class=\"badge\">#{l.posts.select { |p| p.board.id == @board.id }.count }</span>".html_safe, board_path(@board, :label => l.id), :class => "btn btn-#{ @current_label == l.id.to_s ? "success" : "default" } btn-sm" %>
+	<% @labels_map.each do |i| %>
+		<% c = i[0] %>
+		<% l = i[1] %>
+		<% next if c == 0 %>
+		<li class="list-wrap">
+			<%= link_to "#{l.name} &nbsp;<span class=\"badge\">#{c}</span>".html_safe, board_path(@board, :label => l.id), :class => "btn btn-#{ @current_label == l.id.to_s ? "success" : "default" } btn-sm" %>
 		</li>
 	<% end %>
 </ul>

@@ -18,6 +18,16 @@ class BoardsController < ApplicationController
 		@posts = @posts.select do |p|
 			p.label.id.to_s == @current_label
 		end	if @current_label
+    @labels_map = Array.new
+    @board.labels.each do |l|
+      count = l.posts.select do |p|
+        p.board.id == @board.id
+      end.count
+      @labels_map << [ count, l ]
+    end
+    @labels_map.sort! do |a,b|
+      b[0] <=> a[0]
+    end
 		@posts = @posts.paginate(:page => params[:page], :per_page => 20)
   end
 
